@@ -141,8 +141,7 @@ class VIEW3D_OT_lightbox_layer(Operator, AddObjectHelper):
         ob_layer.data.uv_textures[0].data[0].image = image_data # asigna datos a canal de textura        
         
         # I need to save first frame of sequence so we 
-        # can see something in 3D View, before creating whole sequence
-        # WARNING: This will only be visible at frame_start.
+        # can see something in 3D View, before creat frame_start.
         # Maybe I need to set current frame to frame_start as well
 
         name = layername + "-" + str(start).zfill(5) + ".PNG"
@@ -162,8 +161,9 @@ class VIEW3D_OT_lightbox_layer(Operator, AddObjectHelper):
         
     def create_lightbox_layer(self, context):
 
-        y = 1.0
-        x = self.frame_width / self.frame_height
+        y = self.frame_height
+        x = self.frame_width
+        # WARNING: This will only be visible self.frame_height
 
         bpy.ops.mesh.primitive_plane_add('INVOKE_REGION_WIN')
         
